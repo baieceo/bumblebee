@@ -228,7 +228,110 @@
           <a-icon type="setting" />
           接口设置
         </span>
-        Tab 2
+        <a-form>
+          <a-form-item
+            :label-col="labelCol"
+            :wrapper-col="wrapperCol"
+            label="归属 / 项目名"
+            validate-status="error"
+            help="项目名不能为空"
+          >
+            <a-input
+              disabled
+              id="error"
+              addon-before="5c47f3ae9f1c8a370307b142/"
+              default-value=""
+              placeholder="请输入"
+            />
+          </a-form-item>
+
+          <a-form-item
+            :label-col="labelCol"
+            :wrapper-col="wrapperCol"
+            label="项目基础 URL"
+            validate-status="error"
+            help="项目基础 URL 不能为空"
+          >
+            <a-input
+              id="warning"
+              addon-before="/"
+              placeholder="请输入"
+            />
+          </a-form-item>
+
+          <a-form-item
+            :label-col="labelCol"
+            :wrapper-col="wrapperCol"
+            label="项目描述"
+            validate-status="error"
+            help="项目描述不能为空"
+          >
+            <a-input
+              id="warning"
+              type="textarea"
+              placeholder="请输入"
+            />
+          </a-form-item>
+
+          <a-divider>Swagger Docs API (可选)</a-divider>
+
+          <a-form-item
+            :label-col="labelCol"
+            :wrapper-col="wrapperCol"
+            label="方式"
+          >
+            <a-select default-value="1">
+              <a-select-option value="1">
+                URL
+              </a-select-option>
+              <a-select-option value="2">
+                Upload
+              </a-select-option>
+            </a-select>
+          </a-form-item>
+
+          <a-form-item
+            :label-col="labelCol"
+            :wrapper-col="wrapperCol"
+            label="URL"
+          >
+            <a-input placeholder="http://example.com/swagger.json" />
+
+            <div slot="extra">如果后台有提供 Swagger 文档（并且没有验证授权的问题）, 于是我们可以在此处填写 Swagger 的接口地址, BUMBLEBEE 会自动基于此接口创建 Mock 接口. </div>
+          </a-form-item>
+
+          <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
+            <a-button
+              block
+              type="primary"
+              html-type="submit"
+            >
+              保存
+            </a-button>
+          </a-form-item>
+
+          <a-divider>删除项目</a-divider>
+
+          <a-form-item
+            :label-col="labelCol"
+            :wrapper-col="wrapperCol"
+            label="项目名称"
+          >
+            <a-input placeholder="请输入项目名称确认" />
+
+            <div slot="extra">出于某些原因，删除也许会失败。但如果你执意删除，必须知道此操作无法撤消，这将永久删除 1500622348744 / 演示项目</div>
+          </a-form-item>
+
+          <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
+            <a-button
+              block
+              type="danger"
+            >
+              删除
+            </a-button>
+          </a-form-item>
+
+        </a-form>
       </a-tab-pane>
     </a-tabs>
 
@@ -320,7 +423,15 @@ export default {
       data,
       selectedRowKeys: [],
       filteredInfo: null,
-      editorVisible: true,
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 5 }
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 12 }
+      },
+      editorVisible: false,
       editorData: {
         key: '1',
         method: 'get',
