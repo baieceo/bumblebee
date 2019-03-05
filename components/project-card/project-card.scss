@@ -1,0 +1,36 @@
+.project-card {
+  &__item {
+    padding: 10px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin: 0 0 10px 0;
+    background: #f5f5f5;
+    text-align: left;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &-url,
+    &-description {
+      margin: 0;
+      padding: 0;
+
+      &:before {
+        content: '';
+        display: block;
+        width: 20px;
+        height: 2px;
+        background: #f5222d;
+        border-radius: 4px;
+        margin-bottom: 3px;
+      }
+    }
+
+    &-description {
+      &:before {
+        background: #1890ff;
+      }
+    }
+  }
+}
