@@ -110,8 +110,8 @@
               data-index="url"
               :width="300"
             >
-              <template slot-scope="url, record">
-                {{ url[record.env] }}
+              <template slot-scope="url">
+                {{ url.mock }}
               </template>
             </a-table-column>
             <a-table-column
@@ -184,7 +184,7 @@
                   <a-button
                     size="small"
                     title="编辑"
-                    @click="preview(record.url[record.env])"
+                    @click="handleCodeEdit(record, record.url[record.env])"
                   >
                     <a-icon type="edit" />
                   </a-button>
@@ -231,16 +231,24 @@
         Tab 2
       </a-tab-pane>
     </a-tabs>
+
+    <editor
+      :data.sync="editorData"
+      :visible.sync="editorVisible"
+    />
   </section>
 </template>
 
 <script>
+import Editor from '~/components/editor'
+
 const data = [
   {
     key: '1',
     method: 'get',
     env: 'dev',
     url: {
+      mock: '/mock/tvs1',
       dev: '/dev/tvs1',
       prod: '/prod/tvs1',
       daily: '/daily/tvst1',
@@ -253,6 +261,7 @@ const data = [
     method: 'post',
     env: 'prod',
     url: {
+      mock: '/mock/tvs2',
       dev: '/dev/tvs2',
       prod: '/prod/tvs2',
       daily: '/daily/tvst2',
@@ -265,6 +274,7 @@ const data = [
     method: 'get',
     env: 'dev',
     url: {
+      mock: '/mock/tvs11',
       dev: '/dev/tvs11',
       prod: '/prod/tvs11',
       daily: '/daily/tvst11',
@@ -277,6 +287,7 @@ const data = [
     method: 'put',
     env: 'daily',
     url: {
+      mock: '/mock/tvs3',
       dev: '/dev/tvs3',
       prod: '/prod/tvs3',
       daily: '/daily/tvst3',
@@ -289,6 +300,7 @@ const data = [
     method: 'delete',
     env: 'prepub',
     url: {
+      mock: '/mock/tvs4',
       dev: '/dev/tvs4',
       prod: '/prod/tvs4',
       daily: '/daily/tvst4',
@@ -299,13 +311,33 @@ const data = [
 ]
 
 export default {
-  components: {},
+  components: {
+    Editor
+  },
   data() {
     return {
       collapsed: false,
       data,
       selectedRowKeys: [],
-      filteredInfo: null
+      filteredInfo: null,
+      editorVisible: true,
+      editorData: {
+        key: '1',
+        method: 'get',
+        env: 'dev',
+        url: {
+          mock: '/mock/tvs1',
+          dev: '/dev/tvs1',
+          prod: '/prod/tvs1',
+          daily: '/daily/tvst1',
+          prepub: '/prepub/tvst1'
+        },
+        description: '电视列表接口',
+        code: `
+        {
+          a: 1
+        }`
+      }
     }
   },
   computed: {
@@ -330,8 +362,15 @@ export default {
     }
   },
   methods: {
-    handleMenuClick(e) {
-      // console.log('click', e)
+    handleMenuClick(e, row) {
+      // this.editorData = row
+      // this.editorVisible = true
+
+      return false
+    },
+    handleCodeEdit(record) {
+      this.editorData = record
+      this.editorVisible = true
     },
     onSelectChange(selectedRowKeys) {
       // console.log('selectedRowKeys changed: ', selectedRowKeys)
