@@ -1,6 +1,6 @@
-# mock
+# bumblebee
 
-> mock project
+> mock api
 
 ## Build Setup
 

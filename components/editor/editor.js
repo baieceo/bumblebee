@@ -3,6 +3,7 @@ import { codemirror } from 'vue-codemirror'
 import 'codemirror/mode/vue/vue'
 import 'codemirror/mode/htmlmixed/htmlmixed'
 import 'codemirror/mode/javascript/javascript'
+import './formatting'
 
 // require styles
 import 'codemirror/lib/codemirror.css'
@@ -30,7 +31,7 @@ export default {
       codeEditorValue: this.data.code,
       cmOptions: {
         tabSize: 4,
-        mode: 'text/html',
+        mode: 'application/json',
         theme: 'eclipse',
         lineNumbers: true,
         line: true
@@ -68,6 +69,11 @@ export default {
     },
     handleCancel() {
       this.$emit('update:visible', false)
+    },
+    handleCodeFormatter() {
+      const totalLines = this.codemirror.lineCount()
+
+      this.codemirror.autoFormatRange({ line: 0, ch: 0 }, { line: totalLines })
     }
   }
 }

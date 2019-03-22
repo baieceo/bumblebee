@@ -41,7 +41,7 @@ export default {
       this.visible = false
     },
     handleToEdit() {
-      this.$router.push(`/project/${+new Date()}`)
+      this.$router.push(`/project/1`)
     }
   }
 }

@@ -29,6 +29,17 @@
         />Prime
         <!-- <p class="project-header-description">包含个人及团队项目</p> -->
       </a-col>
+      <a-col>
+        <a-button
+          ghost
+          type="primary"
+          icon="home"
+        >
+          <nuxt-link to="/">
+            项目列表
+          </nuxt-link>
+        </a-button>
+      </a-col>
     </a-row>
 
     <a-tabs
@@ -237,8 +248,8 @@
             help="项目名不能为空"
           >
             <a-input
-              disabled
               id="error"
+              disabled
               addon-before="5c47f3ae9f1c8a370307b142/"
               default-value=""
               placeholder="请输入"
@@ -297,7 +308,9 @@
           >
             <a-input placeholder="http://example.com/swagger.json" />
 
-            <div slot="extra">如果后台有提供 Swagger 文档（并且没有验证授权的问题）, 于是我们可以在此处填写 Swagger 的接口地址, BUMBLEBEE 会自动基于此接口创建 Mock 接口. </div>
+            <div slot="extra">
+              如果后台有提供 Swagger 文档（并且没有验证授权的问题）, 于是我们可以在此处填写 Swagger 的接口地址, BUMBLEBEE 会自动基于此接口创建 Mock 接口.
+            </div>
           </a-form-item>
 
           <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
@@ -319,7 +332,9 @@
           >
             <a-input placeholder="请输入项目名称确认" />
 
-            <div slot="extra">出于某些原因，删除也许会失败。但如果你执意删除，必须知道此操作无法撤消，这将永久删除 1500622348744 / 演示项目</div>
+            <div slot="extra">
+              出于某些原因，删除也许会失败。但如果你执意删除，必须知道此操作无法撤消，这将永久删除 1500622348744 / 演示项目
+            </div>
           </a-form-item>
 
           <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
@@ -330,7 +345,6 @@
               删除
             </a-button>
           </a-form-item>
-
         </a-form>
       </a-tab-pane>
     </a-tabs>
@@ -446,7 +460,10 @@ export default {
         description: '电视列表接口',
         code: `
         {
-          a: 1
+          'a': 1,
+          b: function () {
+            return 2
+          }
         }`
       }
     }

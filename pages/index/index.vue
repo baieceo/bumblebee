@@ -19,7 +19,9 @@
           type="primary"
           icon="plus"
         >
-          创建项目
+          <nuxt-link to="/new">
+            创建项目
+          </nuxt-link>
         </a-button>
       </a-col>
     </a-row>
