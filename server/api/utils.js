@@ -28,6 +28,8 @@ module.exports = {
   mock(req, Mock) {
     const _req = {}
 
+    console.log(123, req.body)
+
     // 获得请求 url 地址
     _req.url = req.body.data.URI
     // 获取请求方法
